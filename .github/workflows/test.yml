@@ -1,8 +1,5 @@
 name: Test
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *' # everyday at midnight 
   push:
     branches:
       - main
