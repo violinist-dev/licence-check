@@ -1,5 +1,6 @@
 {
   "name": "violinist-dev/licence-check",
+  "description": "License check for self hosted violinist",
     "require": {
         "spomky-labs/base64url": "^2.0",
         "starkbank/ecdsa": "^2.0",
