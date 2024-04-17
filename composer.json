@@ -1,5 +1,5 @@
 {
-  "name: "violinist-dev/licence-check",
+  "name": "violinist-dev/licence-check",
     "require": {
         "spomky-labs/base64url": "^2.0",
         "starkbank/ecdsa": "^2.0",
