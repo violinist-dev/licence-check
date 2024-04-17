@@ -51,4 +51,3 @@ jobs:
 
       - name: Install dependencies
         run: composer --verbose install
-R_SECRET_URL_FOR_TOKEN: ${{ secrets.GITLAB_SUPER_SECRET_URL_FOR_TOKEN }}
