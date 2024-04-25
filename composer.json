@@ -1,9 +1,17 @@
 {
   "name": "violinist-dev/licence-check",
   "description": "License check for self hosted violinist",
-    "require": {
-        "spomky-labs/base64url": "^2.0",
-        "starkbank/ecdsa": "^2.0",
-        "rybakit/msgpack": "^0.9.1"
-    }
+  "autoload": {
+    "psr-4": {"violinist\\LicenceCheck\\": "src"}
+  },
+  "require": {
+      "spomky-labs/base64url": "^2.0",
+      "starkbank/ecdsa": "^2.0",
+      "rybakit/msgpack": "^0.9.1",
+      "simplito/elliptic-php": "^1.0",
+      "ext-zlib": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  }
 }
