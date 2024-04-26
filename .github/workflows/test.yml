@@ -49,3 +49,12 @@ jobs:
 
       - name: Run tests
         run: ./vendor/bin/phpunit
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close parallel build
+        uses: coverallsapp/github-action@v1
+        with:
+          parallel-finished: true
