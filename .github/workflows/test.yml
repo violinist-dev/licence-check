@@ -46,3 +46,22 @@ jobs:
 
       - name: Install dependencies
         run: composer --verbose install
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit
+
+      - name: Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+        run: |
+          php vendor/bin/php-coveralls -v
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close parallel build
+        uses: coverallsapp/github-action@v1
+        with:
+          parallel-finished: true
