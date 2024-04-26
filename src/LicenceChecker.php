@@ -8,6 +8,9 @@ use MessagePack\BufferUnpacker;
 
 class LicenceChecker
 {
+
+    const INVALID_SIGNATURE = 'Licence key signature is invalid';
+
     private $publicKey;
     private $licenceKey;
     private $errorMessage;
@@ -78,12 +81,19 @@ class LicenceChecker
             }
             $body = new BufferUnpacker($packed_payload);
             $payload = $body->unpack();
-            $instance->payload = $payload;
+            $licence_object = @unserialize($payload, [
+              'allowed_classes' => [Licence::class]
+            ]);
+            if (!$licence_object instanceof Licence) {
+                $instance->setError('Licence key payload is not a valid licence object');
+                return $instance;
+            }
+            $instance->payload = $licence_object;
             $ec = new EdDSA('ed25519');
             $key = @$ec->keyFromPublic($public_key);
             $instance->valid = @$key->verify(bin2hex($packed_payload), $signature);
             if (!$instance->valid) {
-                $instance->setError('Licence key sginature is invalid');
+                $instance->setError(self::INVALID_SIGNATURE);
             }
         } catch (\Throwable $e) {
             $instance->setError('Could not verify licence key');
