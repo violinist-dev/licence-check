@@ -14,11 +14,6 @@
       "simplito/elliptic-php": "^1.0",
       "ext-zlib": "*"
   },
-  "config": {
-    "platform": {
-      "php": "7.2.0"
-    }
-  },
   "require-dev": {
     "phpunit/phpunit": "^8||^9"
   }
