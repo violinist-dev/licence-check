@@ -46,3 +46,6 @@ jobs:
 
       - name: Install dependencies
         run: composer --verbose install
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit
