@@ -29,7 +29,7 @@ class LicenceChecker
 
     public function isValid() : bool
     {
-        return $this->valid;
+        return (bool) $this->valid;
     }
 
     public function getErrorMessage()

@@ -33,4 +33,12 @@ class CheckerTest extends TestCase
         self::assertEquals(false, $checker->isValid());
         self::assertEquals(LicenceChecker::INVALID_SIGNATURE, $checker->getErrorMessage());
     }
+
+    public function testVeryInvalid()
+    {
+        // This key is just gibberish.
+        $generated_licence = 'this is not a valid licence key';
+        $checker = LicenceChecker::createFromLicenceAndKey($generated_licence, self::PUBLIC_KEY);
+        self::assertEquals(false, $checker->isValid());
+    }
 }
