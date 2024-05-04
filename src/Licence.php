@@ -12,8 +12,21 @@ final class Licence
      */
     private $expiry;
 
-    public function __construct(int $expiry)
+    private $data = [];
+
+    public function __construct(int $expiry, $data = [])
     {
         $this->expiry = $expiry;
+        $this->data = $data;
+    }
+
+    public function getExpiry(): int
+    {
+        return $this->expiry;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 }
