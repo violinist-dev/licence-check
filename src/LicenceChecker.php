@@ -15,6 +15,10 @@ class LicenceChecker
     private $licenceKey;
     private $errorMessage;
     private $valid;
+
+    /**
+     * @var Licence
+     */
     private $payload;
 
     public function __construct(string $public_key)
@@ -37,7 +41,7 @@ class LicenceChecker
         return $this->errorMessage;
     }
 
-    public function getPayload()
+    public function getPayload() : Licence
     {
         return $this->payload;
     }
