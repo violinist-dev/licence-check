@@ -41,4 +41,14 @@ class CheckerTest extends TestCase
         $checker = LicenceChecker::createFromLicenceAndKey($generated_licence, self::PUBLIC_KEY);
         self::assertEquals(false, $checker->isValid());
     }
+
+    public function testInvalidLength()
+    {
+        // This key contains 3 items in the array. It's also of course not valid
+        // based on the date, but that's another story.
+        $generated_licence = 'hY1BTsMwFER7FOQT-Ps7tuOs_J3_V0hcgE2UWsIC2qqpqlaoEnfgFghxn9yGFMQWNqMZzRvN2_w5f9xF1FEd6_apbup0uL-tY9mMJT-U8fE3qGjiyxQxRLX6m1yV067uz6qr0aIxwYPT3bJ0_y_Xw2FQ3RDhemWjmrbPRXXf9qe6XOZXhxkQhAITkQ4pOPKSUrtkEfS9ZtBCDOxBvJXEhpJtW_ZZPFJYYEqNNAYWRAsn4gAAPYckYgikEYuS-za7hr0DYYNBjM5gNLhe5_d12e_ON1f9Ag';
+        $checker = LicenceChecker::createFromLicenceAndKey($generated_licence, self::PUBLIC_KEY);
+        self::assertEquals(false, $checker->isValid());
+        self::assertEquals(LicenceChecker::WRONG_DATA_PARTS, $checker->getErrorMessage());
+    }
 }

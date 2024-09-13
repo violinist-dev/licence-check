@@ -10,6 +10,7 @@ class LicenceChecker
 {
 
     const INVALID_SIGNATURE = 'Licence key signature is invalid';
+    const WRONG_DATA_PARTS = 'Licence key does not contain expected data parts';
 
     private $publicKey;
     private $licenceKey;
@@ -65,7 +66,7 @@ class LicenceChecker
         }
         try {
             if (count($data) !== 2) {
-                $instance->setError('Licence key does not contain expected data parts');
+                $instance->setError(self::WRONG_DATA_PARTS);
                 return $instance;
             }
             [$packed_payload, $signature] = $data;
