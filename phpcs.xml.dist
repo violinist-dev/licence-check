@@ -5,4 +5,5 @@
     <rule ref="./vendor/squizlabs/php_codesniffer/src/Standards/PSR2"/>
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
 </ruleset>
