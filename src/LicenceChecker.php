@@ -10,6 +10,7 @@ class LicenceChecker
 {
 
     const INVALID_SIGNATURE = 'Licence key signature is invalid';
+    const WRONG_DATA_PARTS = 'Licence key does not contain expected data parts';
 
     private $publicKey;
     private $licenceKey;
@@ -52,8 +53,7 @@ class LicenceChecker
         $instance->licenceKey = $licence_key;
         try {
             $decoded = @Base64Url::decode($licence_key);
-        }
-        catch (\Throwable $e) {
+        } catch (\Throwable $e) {
             $instance->setError('Could not decode licence key');
         }
         try {
@@ -64,14 +64,13 @@ class LicenceChecker
             }
             $unpacker = new BufferUnpacker($unzipped);
             $data = $unpacker->unpackArray();
-        }
-        catch (\Throwable $e) {
+        } catch (\Throwable $e) {
             $instance->setError('Could not unpack licence key');
             return $instance;
         }
         try {
             if (count($data) !== 2) {
-                $instance->setError('Licence key does not contain expected data parts');
+                $instance->setError(self::WRONG_DATA_PARTS);
                 return $instance;
             }
             [$packed_payload, $signature] = $data;
@@ -86,7 +85,7 @@ class LicenceChecker
             $body = new BufferUnpacker($packed_payload);
             $payload = $body->unpack();
             $licence_object = @unserialize($payload, [
-              'allowed_classes' => [Licence::class]
+              'allowed_classes' => [Licence::class],
             ]);
             if (!$licence_object instanceof Licence) {
                 $instance->setError('Licence key payload is not a valid licence object');
@@ -104,5 +103,4 @@ class LicenceChecker
         }
         return $instance;
     }
-
 }
