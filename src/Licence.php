@@ -28,8 +28,16 @@ final class Licence
         if (empty($this->data[self::PREFIX_DATA_KEY])) {
             return true;
         }
+        // Normalize the URL by removing the protocol part.
+        $normalizedUrl = $this->normalizeUrl($url);
         // Then check if the URL starts with the required prefix.
-        return strpos($url, $this->data[self::PREFIX_DATA_KEY]) === 0;
+        return strpos($normalizedUrl, $this->normalizeUrl($this->data[self::PREFIX_DATA_KEY])) === 0;
+    }
+
+    private function normalizeUrl(string $url) : string
+    {
+        // Remove the protocol part from the URL.
+        return preg_replace('/^(https?|git):\/\//', '', $url);
     }
 
     public function getExpiry(): int
