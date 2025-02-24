@@ -55,7 +55,11 @@ class LicenceTest extends TestCase
             ],
             [
                 'http://github.com/user/repo',
-                false,
+                true,
+            ],
+            [
+                'git://github.com/user/repo',
+                true,
             ],
             [
                 'https://www.github.com/user/repo',
