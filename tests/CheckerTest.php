@@ -1,9 +1,9 @@
 <?php
 
-namespace violinist\LicenceCheck\Tests;
+namespace violinist\LicenseCheck\Tests;
 
 use PHPUnit\Framework\TestCase;
-use violinist\LicenceCheck\LicenceChecker;
+use violinist\LicenseCheck\LicenseChecker;
 
 class CheckerTest extends TestCase
 {
@@ -11,14 +11,14 @@ class CheckerTest extends TestCase
 
     public function testValid()
     {
-        // IF you are thinking of copying this licence key, since that seems
+        // IF you are thinking of copying this license key, since that seems
         // convenient, then that will not work very well. First of all, it's
         // signed with a private key temporarily generated for this test.
         // Second, it was generated with an expiry date in the past. So while
-        // the licence itself is valid, the expiry date is not. So many ways
+        // the license itself is valid, the expiry date is not. So many ways
         // this will not work.
         $generated_licence = 'fYtLakIxFEBdy1vB_SU3iaPrTRwVugFnj9AGxRYVsRSha-ju3m7qpFNHhwPn_C5vS38tDGW6jo_DOI7zZfcy5n6cu7_3ef8vU8HyfS6cyrR6Xq767XOcvqb1KKgoCKqo6_vyI02pWk6YgyU3gsrqgaS5pwcVo9aNY2AQbS1TZABJjwWRHCUqNrCK7pTd2TE6hA01rMQKTJUNmjlLjbYlYc4c3TQxS6iqYH8';
-        $checker = LicenceChecker::createFromLicenceAndKey($generated_licence, self::PUBLIC_KEY);
+        $checker = LicenseChecker::createFromLicenseAndKey($generated_licence, self::PUBLIC_KEY);
         self::assertEquals(true, $checker->isValid());
     }
 
