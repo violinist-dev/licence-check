@@ -28,7 +28,7 @@ class CheckerTest extends TestCase
         // public key of that one, but not with this one right here. Still,
         // should you verify it with the correct public key, the expiry will
         // still be in the past.
-        $generated_license = 'fY1BSgQxEEXnLH2CSlWSqmRWqaSyEryAuyZoUGbEEZlBBM_g7fo29satmw8PHu__bI_buM8EefmY55d5mpf3h7u5jtM66tNYn_9gyS5_XjJJXg7_m4dxfZ1vt-U4s2PnHXCidPzavgMDuKb7Ri7ShayAJ-oQLHiGohiiihfj0lBdjREF2NdYsUYkaYkRtfXmDZIESxiIBCqUaiq9MpYS9oMmqKrmejHd85ULUDGwXw';
+        $generated_license = 'hY1LasMwFEWzFi2gkSzpvSd5pI81CnQDnRhXJSI_E5viUgJdQzZUugzvpuqg03Z0uXDOvff1a_18tJJb9loux3Iu0_y0K0M-Tzns83D4Lcw29n2ykizb_E1u8jKW6xtrixVoOAjQmtqqwv_qcz_3rO2t-Pmq_HjNL2Vh1RbGsv08j5PdbvPSn8ZjfhguJ9bebutHMNGhUYQcXPIRGkoenTPooqFkgqOQyJuAHecKIEWdAoYAKZEm3yhQqEVHwMkBUYcYEXSShLLudTJyjE50wisuFXgZDVavhhHBgObiGw';
         $checker = LicenseChecker::createFromLicenseAndKey($generated_license, self::PUBLIC_KEY);
         self::assertEquals(false, $checker->isValid());
         self::assertEquals(LicenseChecker::INVALID_SIGNATURE, $checker->getErrorMessage());
