@@ -1,28 +1,28 @@
 <?php
 
-namespace violinist\LicenceCheck\Tests;
+namespace violinist\LicenseCheck\Tests;
 
 use Elliptic\EdDSA;
 use PHPUnit\Framework\TestCase;
-use violinist\LicenceCheck\Licence;
-use violinist\LicenceCheck\LicenceChecker;
-use violinist\LicenceCheck\LicenceGenerator;
+use violinist\LicenseCheck\License;
+use violinist\LicenseCheck\LicenseChecker;
+use violinist\LicenseCheck\LicenseGenerator;
 
 class GeneratorTest extends TestCase
 {
     public function testGenerator()
     {
         $new_private_key = bin2hex('real super secret yeah');
-        $creator = new LicenceGenerator($new_private_key);
-        $expriy = time() + 3600;
-        $licence = new Licence($expriy, ['some' => 'data']);
-        $licence_key = $creator->generateLicenceKey($licence);
+        $creator = new LicenseGenerator($new_private_key);
+        $expiry = time() + 3600;
+        $license = new License($expiry, ['some' => 'data']);
+        $license_key = $creator->generateLicenseKey($license);
         // Let's also check its validity, yeah?
         $ec = new EdDSA('ed25519');
         $key = $ec->keyFromSecret($new_private_key);
-        $checker = LicenceChecker::createFromLicenceAndKey($licence_key, $key->getPublic('hex'));
+        $checker = LicenseChecker::createFromLicenseAndKey($license_key, $key->getPublic('hex'));
         self::assertTrue($checker->isValid());
-        self::assertEquals($expriy, $checker->getPayload()->getExpiry());
+        self::assertEquals($expiry, $checker->getPayload()->getExpiry());
         self::assertEquals(['some' => 'data'], $checker->getPayload()->getData());
     }
 }
