@@ -1,45 +1,45 @@
 <?php
 
-namespace violinist\LicenceCheck\Tests;
+namespace violinist\LicenseCheck\Tests;
 
 use PHPUnit\Framework\TestCase;
-use violinist\LicenceCheck\Licence;
+use violinist\LicenseCheck\License;
 
-class LicenceTest extends TestCase
+class LicenseTest extends TestCase
 {
 
    /**
     * Test expiry
     */
-    public function testLicenceExpiry()
+    public function testLicenseExpiry()
     {
         $expiry = time() + 3600;
-        $licence = new Licence($expiry);
-        self::assertEquals($expiry, $licence->getExpiry());
+        $license = new License($expiry);
+        self::assertEquals($expiry, $license->getExpiry());
     }
 
    /**
     * Test getting the data.
     */
-    public function testLicenceData()
+    public function testLicenseData()
     {
         $data = ['some' => 'data'];
-        $licence = new Licence(time(), $data);
-        self::assertEquals($data, $licence->getData());
+        $license = new License(time(), $data);
+        self::assertEquals($data, $license->getData());
     }
 
   /**
-   * Test if the licence is valid for a repository.
+   * Test if the license is valid for a repository.
    *
    * @dataProvider repoProvider
    */
     public function testValidForRepo($url, $expected_result)
     {
         // Without a prefix, always valid.
-        $licence = new Licence(time());
-        self::assertTrue($licence->isValidForRepository($url));
-        $licence = new Licence(time(), ['prefix' => 'https://github.com']);
-        self::assertEquals($expected_result, $licence->isValidForRepository($url));
+        $license = new License(time());
+        self::assertTrue($license->isValidForRepository($url));
+        $license = new License(time(), ['prefix' => 'https://github.com']);
+        self::assertEquals($expected_result, $license->isValidForRepository($url));
     }
 
     public function repoProvider()
