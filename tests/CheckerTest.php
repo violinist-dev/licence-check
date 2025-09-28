@@ -7,7 +7,7 @@ use violinist\LicenseCheck\LicenseChecker;
 
 class CheckerTest extends TestCase
 {
-    const PUBLIC_KEY = '2e71c0e69bc7c20603e5e8abc5ccef0d9a90fea7bfa4bb6fa2a86880e25e249d';
+    const PUBLIC_KEY = '19dd3dce894e2845aebb85a56ca4fe620c01b0fae31054da4b0ff8e59c314d9e';
 
     public function testValid()
     {
@@ -17,7 +17,7 @@ class CheckerTest extends TestCase
         // Second, it was generated with an expiry date in the past. So while
         // the license itself is valid, the expiry date is not. So many ways
         // this will not work.
-        $generated_license = 'fYtLakIxFEBdy1vB_SU3iaPrTRwVugFnj9AGxRYVsRSha-ju3m7qpFNHhwPn_C5vS38tDGW6jo_DOI7zZfcy5n6cu7_3ef8vU8HyfS6cyrR6Xq767XOcvqb1KKgoCKqo6_vyI02pWk6YgyU3gsrqgaS5pwcVo9aNY2AQbS1TZABJjwWRHCUqNrCK7pTd2TE6hA01rMQKTJUNmjlLjbYlYc4c3TQxS6iqYH8';
+        $generated_license = 'hY1NTsMwEEZ7Fh-AjifxeOysbE-yQuICbKJiVKt_UROhIFSJM3AhxDFyG8KCLSw_6b33fSxfy-eDr8Crl3I5lnMZp8f7ssvnMad93h1-h_Lo30ZfsVebv8lNnodyfVVN8do6IE3I1Kwq_a8-9VOvmt7rn6-VH675ucxqtbXzaj9Nw-i32zz3p-GY73aXk2put-U9WnRBnDERADpwjgNYaV0kzZ2w4yqRJaogphgwEpqWI3NqMQiiwaANCHHVdphCjFKzJJFUdyEYB3UtOqFtmSpGpBoCW0hrSgwH0RboGw';
         $checker = LicenseChecker::createFromLicenseAndKey($generated_license, self::PUBLIC_KEY);
         self::assertEquals(true, $checker->isValid());
     }
