@@ -1,14 +1,14 @@
 <?php
 
-namespace violinist\LicenseCheck;
+namespace violinist\LicenceCheck;
 
-final class License
+final class Licence
 {
 
     const PREFIX_DATA_KEY = 'prefix';
 
     /**
-     * The expiry date of the license in a timestamp.
+     * The expiry date of the licence in a timestamp.
      *
      * @var int
      */

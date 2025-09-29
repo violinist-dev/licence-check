@@ -1,12 +1,12 @@
 <?php
 
-namespace violinist\LicenseCheck;
+namespace violinist\LicenceCheck;
 
 use Base64Url\Base64Url;
 use Elliptic\EdDSA;
 use MessagePack\Packer;
 
-class LicenseGenerator
+class LicenceGenerator
 {
     private $privateKey;
 
@@ -15,13 +15,13 @@ class LicenseGenerator
         $this->privateKey = $private_key;
     }
 
-    public function generateLicenseKey(License $license): string
+    public function generateLicenceKey(Licence $licence): string
     {
         $ec = new EdDSA('ed25519');
         $key = $ec->keyFromSecret($this->privateKey);
 
         $packer = new Packer();
-        $body = $packer->pack(serialize($license));
+        $body = $packer->pack(serialize($licence));
 
         $signature = $key->sign(bin2hex($body));
 
